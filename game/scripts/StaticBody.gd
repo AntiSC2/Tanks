@@ -7,8 +7,6 @@ func _ready():
 func _fixed_process(delta):
 	if (get_node("TerrainPolygon").P == false):
 		get_node("TerrainPolygon").P = true;
+		clear_shapes();
 		var T = get_node("TerrainPolygon");
-		var T1 = CollisionPolygon2D.new();
-		T1.set_polygon(T.get_polygon());
-		add_child(T1);
-		add_shape(T1);
+		add_shape(T);

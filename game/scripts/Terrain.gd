@@ -9,9 +9,9 @@ func _ready():
 	randomize();
 	A.remove(1);
 	A.remove(0);
-	var xsize = 1280 / Points;
+	var xsize = 1280 / (Points - 1);
 	for i in range(0, Points):
-		var s = Vector2(xsize * i, rand_range(500, 300));
+		var s = Vector2(xsize * i, rand_range(620, 400));
 		A.append(s);
 	A.append(Vector2(1300, 800));
 	A.append(Vector2(700, 800));
