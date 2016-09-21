@@ -1,10 +1,11 @@
 
-extends KinematicBody2D
+extends RigidBody2D
 
 var Active = false;
-var Speed = 50;
+var Speed = 0.2;
 var Gravity = 5;
 var Power = 1000;
+var SideSpeed = Vector2(8, 0);
 var GravityDelta = 0;
 var TurretRotate = 0.05;
 var Cooldown = 0;
@@ -37,18 +38,21 @@ func _fixed_process(delta):
 		if (Input.is_action_pressed("Fire") && Cooldown == 0):
 			Cooldown = 1
 			_shoot();
+		if (dir.x > 0):
+			if (get_linear_velocity().x < SideSpeed.x):
+				set_linear_velocity(get_linear_velocity() + SideSpeed);
+			get_node("Wheel1").set_angular_velocity(get_node("Wheel1").get_angular_velocity() + Speed);
+			get_node("Wheel2").set_angular_velocity(get_node("Wheel2").get_angular_velocity() + Speed);
+		elif (dir.x < 0):
+			if (get_linear_velocity().x > -SideSpeed.x):
+				set_linear_velocity(get_linear_velocity() - SideSpeed);
+			get_node("Wheel1").set_angular_velocity(get_node("Wheel1").get_angular_velocity() - Speed);
+			get_node("Wheel2").set_angular_velocity(get_node("Wheel2").get_angular_velocity() - Speed);
 	else:
+		get_node("Wheel1").set_angular_velocity(0);
+		get_node("Wheel2").set_angular_velocity(0);
 		set_collision_mask_bit(1, true);
-	
-	var motion = move(dir * Speed * delta + (GravityDelta * GravityDirection * delta));
-	if (is_colliding()):
-		GravityDelta = 0;
-		var n = get_collision_normal();
-		motion = n.slide(motion);
-		var r = motion.normalized();
-		set_rot(atan2(-n.x, -n.y));
-		if (dir != Vector2(0, 0)):
-			move(motion);
+		dir = dir.normalized();
 
 func _shoot():
 	var turret = get_node("Turret");

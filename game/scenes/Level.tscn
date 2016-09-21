@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://scripts/StaticBody.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -6,22 +6,37 @@
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 1232.95, 486.802, 1382.91, 807.165, 301.399, 798.076, 946.634, 505.99 )
+points = Vector2Array( 1147.43, 499.438, 1182.67, 449.087, 1232.95, 486.802 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 42.383, 450.449, 497.564, 464.979, 946.634, 505.99, 301.399, 798.076, -116.662, 741.275 )
+points = Vector2Array( 301.399, 798.076, -116.662, 741.275, -133.995, 413.841, 64.89, 212.439, 175.661, 267.825 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 327.369, 321.441, 497.564, 464.979, 42.383, 450.449, 134.618, 272.228 )
+points = Vector2Array( 301.399, 798.076, 175.661, 267.825, 334.266, 280.412, 457.625, 383.631 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 327.369, 321.441, 134.618, 272.228, 212.538, 204.56 )
+points = Vector2Array( 301.399, 798.076, 457.625, 383.631, 820.15, 549.788 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1382.91, 807.165, 301.399, 798.076, 820.15, 549.788, 915.816, 537.2, 1021.55, 544.753 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1382.91, 807.165, 1021.55, 544.753, 1099.6, 542.236 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1232.95, 486.802, 1382.91, 807.165, 1099.6, 542.236, 1147.43, 499.438 )
 
 [node name="Root" type="Node2D"]
 
@@ -40,6 +55,15 @@ shapes/2/trigger = false
 shapes/3/shape = SubResource( 4 )
 shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/3/trigger = false
+shapes/4/shape = SubResource( 5 )
+shapes/4/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/4/trigger = false
+shapes/5/shape = SubResource( 6 )
+shapes/5/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/5/trigger = false
+shapes/6/shape = SubResource( 7 )
+shapes/6/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/6/trigger = false
 collision/layers = 3
 collision/mask = 3
 constant_linear_velocity = Vector2( 0, 0 )
@@ -51,17 +75,17 @@ script/script = ExtResource( 1 )
 [node name="Shape" type="CollisionPolygon2D" parent="Terrain"]
 
 build_mode = 0
-polygon = Vector2Array( 42.383, 450.449, 134.618, 272.228, 212.538, 204.56, 327.369, 321.441, 497.564, 464.979, 946.634, 505.99, 1232.95, 486.802, 1382.91, 807.165, 301.399, 798.076, -116.662, 741.275 )
-shape_range = Vector2( 0, 3 )
+polygon = Vector2Array( -133.995, 413.841, 64.89, 212.439, 175.661, 267.825, 334.266, 280.412, 457.625, 383.631, 820.15, 549.788, 915.816, 537.2, 1021.55, 544.753, 1099.6, 542.236, 1147.43, 499.438, 1182.67, 449.087, 1232.95, 486.802, 1382.91, 807.165, 301.399, 798.076, -116.662, 741.275 )
+shape_range = Vector2( 0, 6 )
 trigger = false
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 516.169, -210.808 )
+transform/pos = Vector2( 153.645, 171.857 )
 
 [node name="Player3" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 1102.63, 285.424 )
+transform/pos = Vector2( 971.714, 433.958 )
 transform/scale = Vector2( 1, 1 )
 
 
