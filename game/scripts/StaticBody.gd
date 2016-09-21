@@ -1,12 +1,17 @@
 
 extends StaticBody2D
 
-func _ready():
-	set_fixed_process(true);
+var Points = 30;
+var Polygon = Vector2Array([Vector2(1, 0)]);
+var Processed = false;
 
-func _fixed_process(delta):
-	if (get_node("TerrainPolygon").P == false):
-		get_node("TerrainPolygon").P = true;
-		clear_shapes();
-		var T = get_node("TerrainPolygon");
-		add_shape(T);
+func _ready():
+	Polygon = get_node("Shape").get_polygon();
+	set_process(true);
+
+func _process(delta):
+	update();
+
+func _draw():
+	for i in range(0, Polygon.size() - 1):
+		draw_line(Polygon[i], Polygon[i + 1], Color(1, 0, 0, 1), 2);
